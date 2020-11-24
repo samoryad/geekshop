@@ -1,4 +1,4 @@
-"""Geekshop URL Configuration
+"""geekshop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from mainapp import views as mainapp
 
 urlpatterns = [
+    path('', mainapp.main),
+    path('products/', mainapp.products),
+    path('contact/', mainapp.contact),
     path('admin/', admin.site.urls),
 ]
