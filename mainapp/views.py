@@ -2,7 +2,13 @@ from django.shortcuts import render
 
 
 def main(request):
-    return render(request, 'mainapp/index.html')
+    content = {
+        'user':{
+            'first_name': 'andrey',
+            'last_name': 'samoryadov'
+        }
+    }
+    return render(request, 'mainapp/index.html', content)
 
 
 def products(request):
