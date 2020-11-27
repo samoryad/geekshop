@@ -5,11 +5,13 @@ import datetime
 import os
 from django.conf import settings
 
+from mainapp.models import Product
+
 
 def main(request):
-    content = {
-        'title': 'Главная'
-    }
+    title = 'Главная'
+    products = Product.objects.all()[:4]
+    content = {'title': title, 'products': products}
     return render(request, 'mainapp/index.html', content)
 
 
