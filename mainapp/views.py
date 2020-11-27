@@ -1,4 +1,9 @@
+import json
+
 from django.shortcuts import render
+import datetime
+import os
+from django.conf import settings
 
 
 def main(request):
@@ -99,7 +104,16 @@ def products_classic(request):
 
 
 def contact(request):
-    content = {
-        'title': 'Контакты'
-    }
+    title = 'о нас'
+    visit_date = datetime.datetime.now()
+    # locations = []
+    file_path = os.path.join(settings.BASE_DIR, 'contacts.json')
+    # или так settings.BASE_DIR / 'contacts.json'
+    with open(file_path) as file_contacts:
+        # можно так
+        # file_content = file_contacts.read()
+        # locations = json.loads(file_content)
+        # но лучше так:
+        locations = json.load(file_contacts)
+    content = {'title': title, 'visit_date': visit_date, 'locations': locations}
     return render(request, 'mainapp/contact.html', content)
