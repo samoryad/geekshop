@@ -4,7 +4,7 @@
             {#            <a href="{% url link.href %}"#}
             {#               {% if request.resolver_match.url_name == link.href %} class="active" {% endif %}#}
             {#            >{{ link.name }}</a>#}
-            <a href="#">
+            <a href="{% url 'products:category' link.pk %}">
                 <h5>{{ link.name }}</h5>
                 <h6>{{ link.description }}</h6>
             </a>
