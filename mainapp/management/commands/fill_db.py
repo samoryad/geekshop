@@ -32,4 +32,4 @@ class Command(BaseCommand):
             Product.objects.create(**product)
 
         # Создаем суперпользователя при помощи менеджера модели
-        super_user = User.objects.create_superuser('django', 'django@geekbrains.local', 'geekbrains')
+        # User.objects.create_superuser('django', 'django@geekbrains.local', 'geekbrains')
