@@ -5,22 +5,27 @@ import datetime
 import os
 from django.conf import settings
 
+from mainapp.models import Product, ProductCategory
+
 
 def main(request):
-    content = {
-        'title': 'Главная'
-    }
+    title = 'Главная'
+    products = Product.objects.all()[:4]
+    content = {'title': title, 'products': products}
     return render(request, 'mainapp/index.html', content)
 
 
-def products(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
+def products(request, pk=None):
+    print(pk)
+    # links_menu = [
+    #     {'href': 'products_all', 'name': 'все'},
+    #     {'href': 'products_home', 'name': 'дом'},
+    #     {'href': 'products_office', 'name': 'офис'},
+    #     {'href': 'products_modern', 'name': 'модерн'},
+    #     {'href': 'products_classic', 'name': 'классика'},
+    # ]
+    # к заданию №6
+    links_menu = ProductCategory.objects.all()
     content = {
         'title': 'Продукты',
         'links_menu': links_menu
@@ -107,7 +112,7 @@ def contact(request):
     title = 'о нас'
     visit_date = datetime.datetime.now()
     # locations = []
-    file_path = os.path.join(settings.BASE_DIR, 'contacts.json')
+    file_path = os.path.join(settings.BASE_DIR, 'mainapp/JSON/contacts.json')
     # или так settings.BASE_DIR / 'contacts.json'
     with open(file_path) as file_contacts:
         # можно так
