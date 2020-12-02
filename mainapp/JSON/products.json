@@ -1,0 +1,92 @@
+[
+  {
+    "category": "дом",
+    "name": "комфорт",
+    "image": "products_images/product_01",
+    "short_desc": "комфортный стул",
+    "description": "для просмотров фильмов",
+    "price": "3000",
+    "quantity": "23"
+  },
+  {
+    "category": "дом",
+    "name": "комфорт 2",
+    "image": "products_images/product_02",
+    "short_desc": "отличный стул",
+    "description": "для учёбы",
+    "price": "2800",
+    "quantity": "16"
+  },
+  {
+    "category": "дом",
+    "name": "стандарт",
+    "image": "products_images/product_03",
+    "short_desc": "стул",
+    "description": "для работы",
+    "price": "1950.6",
+    "quantity": "19"
+  },
+  {
+    "category": "офис",
+    "name": "комфорт 3",
+    "image": "",
+    "short_desc": "комфортное кресло",
+    "description": "оптимально для работы",
+    "price": "4500",
+    "quantity": "15"
+  },
+  {
+    "category": "офис",
+    "name": "стандарт 2",
+    "image": "products_images/product_04",
+    "short_desc": "стандартное кресло",
+    "description": "для аудиторий",
+    "price": "2560",
+    "quantity": "27"
+  },
+  {
+    "category": "модерн",
+    "name": "комфорт 4",
+    "image": "products_images/product_05",
+    "short_desc": "инновационный дизайн",
+    "description": "всегда актуальное решение",
+    "price": "3000",
+    "quantity": "23"
+  },
+  {
+    "category": "модерн",
+    "name": "стиляга",
+    "image": "products_images/product_06",
+    "short_desc": "супер дизайн",
+    "description": "чтобы все плакали",
+    "price": "7500",
+    "quantity": "6"
+  },
+  {
+    "category": "классика",
+    "name": "рим",
+    "image": "products_images/product_07",
+    "short_desc": "классические формы",
+    "description": "окунитесь в европейский комфорт",
+    "price": "8650",
+    "quantity": "12"
+  },
+  {
+    "category": "классика",
+    "name": "венеция",
+    "image": "products_images/product_08",
+    "short_desc": "эрогономическая спинка",
+    "description": "очень удобный",
+    "price": "5650",
+    "quantity": "22"
+  },
+  {
+    "category": "классика",
+    "name": "тоскана",
+    "image": "products_images/product_09",
+    "short_desc": "удачные пропорции",
+    "description": "компактность и функциональность",
+    "price": "4700",
+    "quantity": "33"
+  }
+]
