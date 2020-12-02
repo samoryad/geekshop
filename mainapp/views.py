@@ -1,10 +1,8 @@
 import json
-
 from django.shortcuts import render
 import datetime
 import os
 from django.conf import settings
-
 from mainapp.models import Product, ProductCategory
 
 
@@ -17,75 +15,7 @@ def main(request):
 
 def products(request, pk=None):
     print(pk)
-    # links_menu = [
-    #     {'href': 'products_all', 'name': 'все'},
-    #     {'href': 'products_home', 'name': 'дом'},
-    #     {'href': 'products_office', 'name': 'офис'},
-    #     {'href': 'products_modern', 'name': 'модерн'},
-    #     {'href': 'products_classic', 'name': 'классика'},
-    # ]
-    # к заданию №6
     links_menu = ProductCategory.objects.all()
-    content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
-    }
-    return render(request, 'mainapp/products.html', content)
-
-
-def products_all(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
-    content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
-    }
-    return render(request, 'mainapp/products.html', content)
-
-
-def products_home(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
-    content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
-    }
-    return render(request, 'mainapp/products.html', content)
-
-
-def products_office(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
-    content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
-    }
-    return render(request, 'mainapp/products.html', content)
-
-
-def products_modern(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
     content = {
         'title': 'Продукты',
         'links_menu': links_menu
