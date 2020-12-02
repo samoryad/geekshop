@@ -17,6 +17,11 @@
     </li>
     {% if user.is_authenticated %}
         <li>
+            <a href="{% url 'auth:edit' %}">
+                {% if user.first_name %}{{ user.first_name }}{% else %}пользователь{% endif %}
+            </a>
+        </li>
+        <li>
             <a href="{% url 'auth:logout' %}">
                 выход
             </a>
