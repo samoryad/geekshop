@@ -35,6 +35,7 @@ class ShopUserRegisterForm(UserCreationForm):
 
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
+        print(data)
         if data == 'мат':
             raise forms.ValidationError('Как Вам не стыдно, выберите корректное имя')
         return data
@@ -59,4 +60,11 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError('Вы слишком молоды!')
         elif data > 100:
             raise forms.ValidationError('Вы горец?')
+        return data
+
+    def clean_first_name(self):
+        data = self.cleaned_data['first_name']
+        print(data)
+        if data == 'мат':
+            raise forms.ValidationError('Как Вам не стыдно, выберите корректное имя')
         return data
