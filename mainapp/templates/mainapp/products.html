@@ -57,40 +57,63 @@
             </div>
         </div>
 
+        {#        <div class="related">#}
+        {#            <div class="title clearfix">#}
+        {#                <h2>Похожие продукты</h2>#}
+        {#                <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>#}
+        {#            </div>#}
+        {#            <div class="related-products clearfix">#}
+        {#                <div class="block">#}
+        {#                    <a href="#"><img src="{% static 'img/product-11.jpg' %}" alt="">#}
+        {#                        <div class="text">#}
+        {#                            <img src="{% static 'img/icon-hover.png' %}" alt="img">#}
+        {#                            <h4>Стул повышенного качества</h4>#}
+        {#                            <p>Не оторваться. </p>#}
+        {#                        </div>#}
+        {#                    </a>#}
+        {#                </div>#}
+        {#                <div class="block">#}
+        {#                    <a href="#"><img src="{% static 'img/product-21.jpg' %}" alt="">#}
+        {#                        <div class="text">#}
+        {#                            <img src="{% static 'img/icon-hover.png' %}" alt="img">#}
+        {#                            <h4>Стул повышенного качества</h4>#}
+        {#                            <p>Не оторваться. </p>#}
+        {#                        </div>#}
+        {#                    </a>#}
+        {#                </div>#}
+        {#                <div class="block">#}
+        {#                    <a href="#"><img src="{% static 'img/product-31.jpg' %}" alt="">#}
+        {#                        <div class="text">#}
+        {#                            <img src="{% static 'img/icon-hover.png' %}" alt="img">#}
+        {#                            <h4>Стул повышенного качества</h4>#}
+        {#                            <p>Не оторваться. </p>#}
+        {#                        </div>#}
+        {#                    </a>#}
+        {#                </div>#}
+        {##}
+        {#            </div>#}
+        {#        </div>#}
         <div class="related">
             <div class="title clearfix">
                 <h2>Похожие продукты</h2>
                 <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
             </div>
             <div class="related-products clearfix">
-                <div class="block">
-                    <a href="#"><img src="{% static 'img/product-11.jpg' %}" alt="">
-                        <div class="text">
-                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
-                            <h4>Стул повышенного качества</h4>
-                            <p>Не оторваться. </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="block">
-                    <a href="#"><img src="{% static 'img/product-21.jpg' %}" alt="">
-                        <div class="text">
-                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
-                            <h4>Стул повышенного качества</h4>
-                            <p>Не оторваться. </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="block">
-                    <a href="#"><img src="{% static 'img/product-31.jpg' %}" alt="">
-                        <div class="text">
-                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
-                            <h4>Стул повышенного качества</h4>
-                            <p>Не оторваться. </p>
-                        </div>
-                    </a>
-                </div>
-
+                {% for product in same_products %}
+                    <div class="block">
+                        <a href="#">
+                            <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
+                            <div class="text">
+                                <img src="/static/img/icon-hover.png" alt="img">
+                                <h3>Категория: {{ product.category.name }}</h3>
+                                <h4>Название: {{ product.name }}</h4>
+                                <p>Описание: {{ product.description }}</p>
+                                <p>Цена: {{ product.price }}</p>
+                                <p>На складе: {{ product.category }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import datetime
 import os
 from django.conf import settings
@@ -15,26 +15,36 @@ def main(request):
 
 def products(request, pk=None):
     print(pk)
+
+    title = 'продукты'
     links_menu = ProductCategory.objects.all()
-    content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
-    }
-    return render(request, 'mainapp/products.html', content)
 
+    if pk is not None:
+        if pk == 0:
+            products_list = Product.objects.all().order_by('price')
+            category = {'name': 'все', 'pk': 0}
+        else:
+            # category = ProductCategory.objects.get(pk=pk)
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products_list = Product.objects.filter(category__pk=pk).order_by('price')
 
-def products_classic(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
+        content = {
+            'title': title,
+            'links_menu': links_menu,
+            'category': category,
+            'products': products_list,
+        }
+
+        return render(request, 'mainapp/products_list.html', content)
+
+    same_products = Product.objects.all()[2:5]
+
     content = {
-        'title': 'Продукты',
-        'links_menu': links_menu
+        'title': title,
+        'links_menu': links_menu,
+        'same_products': same_products
     }
+
     return render(request, 'mainapp/products.html', content)
 
 
