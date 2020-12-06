@@ -44,7 +44,7 @@ def products(request, pk=None):
 
         return render(request, 'mainapp/products_list.html', content)
 
-    same_products = Product.objects.all()[2:5]
+    same_products = Product.objects.all()[3:5]
 
     content = {
         'title': title,
