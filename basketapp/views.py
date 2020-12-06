@@ -4,8 +4,7 @@ from mainapp.models import Product
 
 
 def basket(request):
-    content = {}
-    return render(request, 'basketapp/basket.html', content)
+    pass
 
 
 def basket_add(request, pk):
@@ -23,5 +22,4 @@ def basket_add(request, pk):
 
 
 def basket_remove(request):
-    content = {}
-    return render(request, 'basketapp/basket.html', content)
+    pass

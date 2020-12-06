@@ -8,3 +8,13 @@ class Basket(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name='количество', default=0)
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
+
+    @property
+    # метод, считающий количество товаров в корзине пользователя
+    def total_quantity(self):
+        user_basket_objects = Basket.objects.filter(user=self.user)
+        totalquantity = 0
+        for object in user_basket_objects:
+            totalquantity += object.quantity
+
+        return totalquantity
