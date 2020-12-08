@@ -1,92 +1,92 @@
 [
   {
     "category": "дом",
-    "name": "комфорт",
-    "image": "products_images/product_01",
+    "name": "комфорт 1",
+    "image": "products_images/product-1.jpg",
     "short_desc": "комфортный стул",
-    "description": "для просмотров фильмов",
-    "price": "3000",
-    "quantity": "23"
+    "description": "подойдет для просмотра фильмов",
+    "price": "2989.5",
+    "quantity": "17"
   },
   {
     "category": "дом",
     "name": "комфорт 2",
-    "image": "products_images/product_02",
-    "short_desc": "отличный стул",
-    "description": "для учёбы",
-    "price": "2800",
-    "quantity": "16"
+    "image": "products_images/product-2.jpg",
+    "short_desc": "очень комфортный стул",
+    "description": "подойдет для общения с друзьями",
+    "price": "3687.2",
+    "quantity": "21"
   },
   {
     "category": "дом",
+    "name": "люкс",
+    "image": "products_images/product-3.jpg",
+    "short_desc": "использованы премиальные материалы",
+    "description": "для тех, кто стремится к лучшему",
+    "price": "8157.99",
+    "quantity": "7"
+  },
+  {
+    "category": "офис",
     "name": "стандарт",
-    "image": "products_images/product_03",
-    "short_desc": "стул",
-    "description": "для работы",
-    "price": "1950.6",
-    "quantity": "19"
-  },
-  {
-    "category": "офис",
-    "name": "комфорт 3",
-    "image": "",
-    "short_desc": "комфортное кресло",
-    "description": "оптимально для работы",
-    "price": "4500",
-    "quantity": "15"
-  },
-  {
-    "category": "офис",
-    "name": "стандарт 2",
-    "image": "products_images/product_04",
-    "short_desc": "стандартное кресло",
-    "description": "для аудиторий",
-    "price": "2560",
+    "image": "products_images/product-4.jpg",
+    "short_desc": "универсальное решение",
+    "description": "подойдет для любого офиса",
+    "price": "1895.25",
     "quantity": "27"
   },
   {
+    "category": "офис",
+    "name": "премиум",
+    "image": "products_images/product-5.jpg",
+    "short_desc": "улучшенный дизайн",
+    "description": "идеально впишется в строгий интерьер офиса",
+    "price": "3587.41",
+    "quantity": "9"
+  },
+  {
     "category": "модерн",
-    "name": "комфорт 4",
-    "image": "products_images/product_05",
+    "name": "новинка",
+    "image": "products_images/product-6.jpg",
     "short_desc": "инновационный дизайн",
-    "description": "всегда актуальное решение",
-    "price": "3000",
-    "quantity": "23"
+    "description": "нестандартное решение для современного интерьера",
+    "price": "5361.47",
+    "quantity": "18"
   },
   {
     "category": "модерн",
-    "name": "стиляга",
-    "image": "products_images/product_06",
-    "short_desc": "супер дизайн",
-    "description": "чтобы все плакали",
-    "price": "7500",
-    "quantity": "6"
-  },
-  {
-    "category": "классика",
-    "name": "рим",
-    "image": "products_images/product_07",
-    "short_desc": "классические формы",
-    "description": "окунитесь в европейский комфорт",
-    "price": "8650",
+    "name": "прогресс",
+    "image": "products_images/product-7.jpg",
+    "short_desc": "прогрессивный дизайн",
+    "description": "функциональное и комфортное решение",
+    "price": "6789.33",
     "quantity": "12"
   },
   {
     "category": "классика",
     "name": "венеция",
-    "image": "products_images/product_08",
-    "short_desc": "эрогономическая спинка",
-    "description": "очень удобный",
-    "price": "5650",
-    "quantity": "22"
+    "image": "products_images/product-8.jpg",
+    "short_desc": "классические формы",
+    "description": "окунитесь в европейский комфорт",
+    "price": "4147.51",
+    "quantity": "25"
   },
   {
     "category": "классика",
     "name": "тоскана",
-    "image": "products_images/product_09",
+    "image": "products_images/product-9.jpg",
+    "short_desc": "эргономичная спинка",
+    "description": "почувствуйте комфорт и насладитесь цветовой гаммой",
+    "price": "7147.35",
+    "quantity": "18"
+  },
+  {
+    "category": "классика",
+    "name": "рим",
+    "image": "products_images/product-10.jpg",
     "short_desc": "удачные пропорции",
     "description": "компактность и функциональность",
-    "price": "4700",
-    "quantity": "33"
+    "price": "8357.77",
+    "quantity": "8"
   }
 ]
