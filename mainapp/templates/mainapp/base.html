@@ -9,8 +9,11 @@
         {% endblock %}
     </title>
     {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
         <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css.map' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
     {% block js %}
     {% endblock %}
@@ -19,6 +22,12 @@
 <body>
 <div class="container">
     {% block menu %}
+        <div class="hero-white">
+            <div class="header clearfix">
+                <a href="index.html" class="logo"></a>
+                {% include 'mainapp/includes/inc_main_menu.html' %}
+            </div>
+        </div>
     {% endblock %}
 
     {% block content %}

@@ -1,17 +1,7 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% block menu %}
-    <div class="hero">
-        <div class="header clearfix">
-            <a href="index.html" class="logo"></a>
-            {% include 'mainapp/includes/inc_main_menu.html' %}
-            <a href="#" class="search"></a>
-            <a href="#" class="basket"></a>
-        </div>
-        <h1>наши контакты</h1>
-    </div>
-{% endblock %}
 {% block content %}
+    <h1 class="hero">наши контакты</h1>
     <div class="location">
         {% for location in locations %}
             <div class="location-1">
