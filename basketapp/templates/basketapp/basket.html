@@ -10,7 +10,7 @@
                 <span class="product_name">{{ item.product.name }}</span>
                 <span class="product_price">{{ item.product.price }}&nbsp;руб</span>
                 <input type="number" name="{{ item.pk }}" min="0" value="{{ item.quantity }}">
-                <span class="product_cost"> {{ item.cost }}&nbsp;руб.</span>
+                <span class="product_cost"> {{ item.product_cost }}&nbsp;руб.</span>
                 <button class="btn btn-round">
                     <a href="{% url 'basket:remove' item.pk %}" class="">
                         удалить
