@@ -60,7 +60,27 @@ def user_update(request, pk):
 
 
 def user_delete(request, pk):
-    pass
+    title = 'пользователи/удаление'
+
+    user_item = get_object_or_404(ShopUser, pk=pk)
+    # для полного удаления пользователя
+    # user_item.delete()
+
+    # для скрытия пользователя
+    if request.method == 'POST':
+        if user_item.is_active:
+            user_item.is_active = False
+        else:
+            user_item.is_active = True
+        user_item.save()
+        return HttpResponseRedirect(reverse('admin:users'))
+
+    content = {
+        'title': title,
+        'user_to_delete': user_item
+    }
+
+    return render(request, 'adminapp/user_delete.html', content)
 
 
 # категории
@@ -72,7 +92,7 @@ def category_create(request):
 def categories(request):
     title = 'админка/категории'
 
-    categories_list = ProductCategory.objects.all()
+    categories_list = ProductCategory.objects.all().order_by('-is_active')
 
     content = {
         'title': title,
@@ -99,12 +119,12 @@ def product_create(request, pk):
 def products(request, pk):
     title = 'админка/продукт'
 
-    category = get_object_or_404(ProductCategory, pk=pk)
-    products_list = Product.objects.filter(category__pk=pk).order_by('name')
+    category_item = get_object_or_404(ProductCategory, pk=pk)
+    products_list = Product.objects.filter(category=category_item)
 
     content = {
         'title': title,
-        'category': category,
+        'category': category_item,
         'objects': products_list
     }
 
