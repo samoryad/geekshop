@@ -169,7 +169,7 @@ def product_create(request, pk):
             update_form.save()
             return HttpResponseRedirect(reverse('adminapp:products', args=[pk]))
     else:
-        update_form = ProductEditForm()
+        update_form = ProductEditForm(initial={'category': category_item})
 
     content = {
         'title': title,
