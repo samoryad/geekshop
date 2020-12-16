@@ -321,7 +321,7 @@ def product_create(request, pk):
     }
     return render(request, 'adminapp/product_update.html', content)
 
-# Не работает, возможно нужно поменять шаблон, objects на object_list не помогло
+# Не работает, не могу сообразить, как внедрить категорию через функцию get_context
 # class ProductCreateView(CreateView):
 #     model = Product
 #     template_name = 'adminapp/product_update.html'
@@ -353,7 +353,7 @@ def products(request, pk):
 
     return render(request, 'adminapp/products.html', content)
 
-# Не работает, возможно нужно поменять шаблон, objects на object_list не помогло
+# Не работает, не могу сообразить, как внедрить категорию через функцию get_context
 # class ProductListView(ListView):
 #     model = Product
 #     template_name = 'adminapp/products.html'
