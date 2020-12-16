@@ -8,7 +8,8 @@
                 новый пользователь
             </a>
         </button>
-        {% for object in objects %}
+        {#    при оптимизации через CBV (Class Based View) нужно заменить objects на object_list#}
+        {% for object in object_list %}
             <div class="user_record {% if not object.is_active %}not_active{% endif %}">
                 <img src="/media/{{ object.avatar|default:'users_avatars/default.jpg' }}" alt="{{ object.username }}">
                 <div class="user_role">
@@ -25,9 +26,9 @@
                     <button>
                         <a href={% url 'admin:user_delete' object.pk %}>
                             {% if object.is_active %}
-                            удалить
+                                удалить
                             {% else %}
-                            восстановить
+                                восстановить
                             {% endif %}
                         </a>
                     </button>
@@ -41,7 +42,7 @@
                                 <p>{{ object.last_name|title }}</p>
                             {% endif %}
                         {% endif %}
-{#                    </p>#}
+                    {#                    </p>#}
                 </div>
                 <div class="user_age">
                     age:<br>
