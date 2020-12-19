@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9GR0YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IGRqYW5nbzEw?=
+From: django@geekbrains.local
+To: django10@geekbrains.local
+Date: Sat, 19 Dec 2020 20:43:59 -0000
+Message-ID: <160841063902.25544.1886639940247425348@Gogi>
+
+Для подтверждения учётной записи django10 на портале http://localhost:8000перейдите по ссылке: http://localhost:8000/auth/verify/django10@geekbrains.local/cf31cb4671a975d2f5896df476cedeb0d331b610/
+-------------------------------------------------------------------------------
