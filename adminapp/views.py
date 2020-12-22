@@ -445,8 +445,6 @@ class ProductDetailView(DetailView):
 #     return render(request, 'adminapp/product_update.html', content)
 
 
-# не могу разобраться, что не так, работает не всегда корректно, при переходе на редактирование иногда
-# 404 ошибка возникает и почему-то в форме встаёт не та категория в шапку по умолчанию!
 class ProductUpdateView(UpdateView):
     model = Product
     template_name = 'adminapp/product_update.html'
@@ -458,26 +456,23 @@ class ProductUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # print(context)
-        category_pk = self.kwargs['pk']
-        # print(category_pk)
-        category_item = get_object_or_404(ProductCategory, pk=category_pk)
-        # print(category_item)
-        context['category'] = category_item
+        product_pk = self.kwargs['pk']
+        product_item = Product.objects.get(pk=product_pk)
+        context['category'] = product_item.category
         context['title'] = 'продукт/редактирование'
         return context
 
     def get_success_url(self):
-        category_pk = self.kwargs['pk']
-        success_url = reverse('admin:products', args=[category_pk])
+        product_pk = self.kwargs['pk']
+        product_item = Product.objects.get(pk=product_pk)
+        success_url = reverse('admin:products', args=[product_item.category__pk])
         return success_url
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        category_pk = self.kwargs['pk']
-        # print(category_pk)
-        category_item = get_object_or_404(Product, pk=category_pk)
-        kwargs['initial'] = {'category': category_item}
+        product_pk = self.kwargs['pk']
+        product_item = get_object_or_404(Product, pk=product_pk)
+        kwargs['initial'] = {'category': product_item.category}
         return kwargs
 
 
