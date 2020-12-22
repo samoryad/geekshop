@@ -11,10 +11,10 @@ from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
+# def get_basket(user):
+#     if user.is_authenticated:
+#         return Basket.objects.filter(user=user)
+#     return []
 
 
 def get_hot_product():
@@ -30,7 +30,7 @@ def get_same_products(hot_product):
 def main(request):
     title = 'Главная'
     products = Product.objects.all()[:4]
-    content = {'title': title, 'products': products, 'basket': get_basket(request.user)}
+    content = {'title': title, 'products': products,}
     return render(request, 'mainapp/index.html', content)
 
 
@@ -60,7 +60,6 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'category': category,
             'products': product_paginator,
-            'basket': get_basket(request.user),
         }
 
         return render(request, 'mainapp/products_list.html', content)
@@ -72,7 +71,6 @@ def products(request, pk=None, page=1):
         'title': title,
         'links_menu': links_menu,
         'same_products': same_products,
-        'basket': get_basket(request.user),
         'hot_product': hot_product
     }
 
@@ -85,7 +83,6 @@ def product(request, pk):
         'title': title,
         'links_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/product.html', content)
 
@@ -102,7 +99,7 @@ def contact(request):
         # locations = json.loads(file_content)
         # но лучше так:
         locations = json.load(file_contacts)
-    content = {'title': title, 'visit_date': visit_date, 'locations': locations, 'basket': get_basket(request.user)}
+    content = {'title': title, 'visit_date': visit_date, 'locations': locations,}
     return render(request, 'mainapp/contact.html', content)
 
 # обработка ошибки 404
