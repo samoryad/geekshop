@@ -6,7 +6,7 @@ import requests
 from django.utils import timezone
 from social_core.exceptions import AuthForbidden
 
-from authapp.models import ShopUserProfile
+from authapp.models import ShopUserProfile, ShopUser
 
 
 def save_user_profile(backend, user, response, *args, **kwargs):
@@ -27,7 +27,6 @@ def save_user_profile(backend, user, response, *args, **kwargs):
         return
 
     data = resp.json()['response'][0]
-    print(data)
     if data['sex'] == 2:
         user.shopuserprofile.gender = ShopUserProfile.MALE
     elif data['sex'] == 1:
@@ -53,3 +52,27 @@ def save_user_profile(backend, user, response, *args, **kwargs):
         user.shopuserprofile.url_address = f'https://vk.com/id{data["id"]}'
 
     user.save()
+
+
+def get_user_avatar(backend, user, response, *args, **kwargs):
+    if backend.name != 'vk-oauth2':
+        return
+
+    api_url = urlunparse(('https',
+                          'api.vk.com',
+                          '/method/users.get',
+                          None,
+                          urlencode(OrderedDict(fields='photo_200',
+                                                access_token=response['access_token'],
+                                                v='5.92')),
+                          None
+                          ))
+
+    resp = requests.get(api_url)
+    if resp.status_code != 200:
+        return
+
+    data = resp.json()['response'][0]
+    url_avatar = data['photo_200']
+    print(url_avatar)
+    return
