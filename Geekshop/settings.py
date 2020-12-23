@@ -152,12 +152,10 @@ EMAIL_FILE_PATH = 'tmp/emails/'
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
 
-
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.vk.VKOAuth2'
 )
-
 
 with open('geekshop/vk.json', 'r') as f:
     VK = json.load(f)
@@ -176,6 +174,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.create_user',
     # включаем свой метод после создания пользователя
     'authapp.pipeline.save_user_profile',
+    'authapp.pipeline.get_user_avatar',
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
