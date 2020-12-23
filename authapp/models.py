@@ -33,6 +33,8 @@ class ShopUserProfile(models.Model):
     tagline = models.CharField(max_length=128, blank=True, verbose_name='теги')
     aboutMe = models.TextField(blank=True, verbose_name='о себе')
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, verbose_name='пол')
+    language = models.CharField(max_length=128, blank=True, verbose_name='язык')
+    url_address = models.CharField(max_length=128, blank=True, verbose_name='ссылка на страницу')
 
     # важен порядок выполнения методов, если их поменять местами работать не будет
     @receiver(post_save, sender=ShopUser)
