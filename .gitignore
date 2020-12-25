@@ -20,3 +20,7 @@ env.bak/
 venv.bak/
 .idea
 /media/
+vk.json
+/tmp/
+.tmp
+
