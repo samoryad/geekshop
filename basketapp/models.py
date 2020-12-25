@@ -22,7 +22,7 @@ class Basket(models.Model):
         return _total_quantity
 
     @property
-    # метод вычисления ощей стоимости продуктов конкретного пользователя
+    # метод вычисления общей стоимости продуктов конкретного пользователя
     def total_cost(self):
         _user_basket_objects = Basket.objects.filter(user=self.user)
         _total_cost = sum(list(map(lambda x: x.product_cost, _user_basket_objects)))
