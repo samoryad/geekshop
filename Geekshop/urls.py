@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 from mainapp import views as mainapp
 
 urlpatterns = [
@@ -28,8 +28,7 @@ urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     # path('sub_admin/', admin.site.urls), старая админка
     path('admin/', include('adminapp.urls', namespace='admin')),
-    # path('order/', include('ordersapp.urls', namespace='order')),
-    re_path(r'^order/', include('ordersapp.urls', namespace='order')),
+    path('order/', include('ordersapp.urls', namespace='order')),
 ]
 
 # обработка 404 ошибки
