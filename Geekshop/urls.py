@@ -27,7 +27,8 @@ urlpatterns = [
     path('contact/', mainapp.contact, name='contact'),
     path('', include('social_django.urls', namespace='social')),
     # path('sub_admin/', admin.site.urls), старая админка
-    path('admin/', include('adminapp.urls', namespace='admin'))
+    path('admin/', include('adminapp.urls', namespace='admin')),
+    path('order/', include('ordersapp.urls', namespace='order')),
 ]
 
 # обработка 404 ошибки

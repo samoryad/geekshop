@@ -1,8 +1,11 @@
+import os
+import urllib.request
 from collections import OrderedDict
 from datetime import datetime
 from urllib.parse import urlencode, urlunparse
 
 import requests
+from django.conf import settings
 from django.utils import timezone
 from social_core.exceptions import AuthForbidden
 
@@ -17,7 +20,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
                           'api.vk.com',
                           '/method/users.get',
                           None,
-                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'country')),
+                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'country', 'photo_200')),
                                                 access_token=response['access_token'],
                                                 v='5.92')),
                           None
@@ -51,28 +54,35 @@ def save_user_profile(backend, user, response, *args, **kwargs):
     if data['id']:
         user.shopuserprofile.url_address = f'https://vk.com/id{data["id"]}'
 
+    if data['photo_200']:
+        urllib.request.urlretrieve(
+            data['photo_200'],
+            os.path.join(settings.MEDIA_ROOT, 'users_avatars', f'{user.pk}.jpg')
+        )
+        user.avatar = os.path.join('users_avatars', f'{user.pk}.jpg')
+
     user.save()
 
 
-def get_user_avatar(backend, user, response, *args, **kwargs):
-    if backend.name != 'vk-oauth2':
-        return
-
-    api_url = urlunparse(('https',
-                          'api.vk.com',
-                          '/method/users.get',
-                          None,
-                          urlencode(OrderedDict(fields='photo_200',
-                                                access_token=response['access_token'],
-                                                v='5.92')),
-                          None
-                          ))
-
-    resp = requests.get(api_url)
-    if resp.status_code != 200:
-        return
-
-    data = resp.json()['response'][0]
-    url_avatar = data['photo_200']
-    print(url_avatar)
-    return
+# def get_user_avatar(backend, user, response, *args, **kwargs):
+#     if backend.name != 'vk-oauth2':
+#         return
+#
+#     api_url = urlunparse(('https',
+#                           'api.vk.com',
+#                           '/method/users.get',
+#                           None,
+#                           urlencode(OrderedDict(fields='photo_200',
+#                                                 access_token=response['access_token'],
+#                                                 v='5.92')),
+#                           None
+#                           ))
+#
+#     resp = requests.get(api_url)
+#     if resp.status_code != 200:
+#         return
+#
+#     data = resp.json()['response'][0]
+#     url_avatar = data['photo_200']
+#     print(url_avatar)
+#     return
