@@ -32,6 +32,7 @@ def basket_add(request, pk):
         basket_item = Basket(user=request.user, product=product)
 
     basket_item.quantity += 1
+    # добавить 'quantity' при ошибке update_fields
     basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
