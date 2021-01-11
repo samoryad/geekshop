@@ -2,7 +2,9 @@ from django.conf import settings
 from django.db import models
 from mainapp.models import Product
 
-
+# можно создать менеджер (в данном случае из-за удаления QuerySet в ordersapp\views.py
+# будет восстановлено количество товаров на складе)
+# он обрабатывает не один объект, а сразу пачку объектов - QuerySet)
 # class BasketQuerySet(models.QuerySet):
 #
 #     def delete(self, *args, **kwargs):
@@ -56,6 +58,8 @@ class Basket(models.Model):
 
         return basket_items_dic
 
+    # переопределение метода удаления корзинок, будет работать в связке с basket_items[num].delete()
+    # из ordersapp\views.py класса OrderCreateView
     # def delete(self):
     #     self.product.quantity += self.quantity
     #     self.product.save()
