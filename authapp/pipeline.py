@@ -63,26 +63,3 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     user.save()
 
-
-# def get_user_avatar(backend, user, response, *args, **kwargs):
-#     if backend.name != 'vk-oauth2':
-#         return
-#
-#     api_url = urlunparse(('https',
-#                           'api.vk.com',
-#                           '/method/users.get',
-#                           None,
-#                           urlencode(OrderedDict(fields='photo_200',
-#                                                 access_token=response['access_token'],
-#                                                 v='5.92')),
-#                           None
-#                           ))
-#
-#     resp = requests.get(api_url)
-#     if resp.status_code != 200:
-#         return
-#
-#     data = resp.json()['response'][0]
-#     url_avatar = data['photo_200']
-#     print(url_avatar)
-#     return
