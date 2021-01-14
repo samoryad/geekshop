@@ -1,0 +1,4 @@
+[
+  {"SOCIAL_AUTH_VK_OAUTH2_KEY": "<id_from_vk>"},
+  {"SOCIAL_AUTH_VK_OAUTH2_SECRET": "<secret_from_vk>"}
+]
