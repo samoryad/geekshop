@@ -91,7 +91,7 @@ def contact(request):
     title = 'о нас'
     visit_date = datetime.datetime.now()
     # locations = []
-    file_path = os.path.join(settings.BASE_DIR, 'mainapp/JSON/contacts.json')
+    file_path = os.path.join(settings.BASE_DIR, 'mainapp/json/contacts.json')
     # или так settings.BASE_DIR / 'contacts.json'
     with open(file_path) as file_contacts:
         # можно так
