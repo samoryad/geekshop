@@ -24,3 +24,4 @@ vk.json
 /tmp/
 .tmp
 __pycache__
+**/__pycache__
