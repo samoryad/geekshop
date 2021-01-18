@@ -23,7 +23,7 @@ class Order(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
     status = models.CharField(max_length=3, choices=ORDER_STATUSES, default=FORMING, verbose_name='статус')
-    is_active = models.BooleanField(default=True, verbose_name='активен')
+    is_active = models.BooleanField(default=True, verbose_name='активен', db_index=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='дата создания заказа')
     updated = models.DateTimeField(auto_now=True, verbose_name='дата обновления заказа')
 
