@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404
 import datetime
 import os
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
@@ -60,6 +61,8 @@ def main(request):
     return render(request, 'mainapp/index.html', content)
 
 
+# можно закэшировать страницу здесь, а можно в urls
+# @cache_page(3600)
 def products(request, pk=None, page=1):
     title = 'продукты'
     links_menu = get_links_menu()
