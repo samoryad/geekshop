@@ -1,6 +1,7 @@
 import json
 import random
 
+from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 import datetime
@@ -17,6 +18,18 @@ from mainapp.models import Product, ProductCategory
 #     return []
 
 
+def get_links_menu():
+    if settings.LOW_CACHE:
+        key = 'links_menu'
+        links_menu = cache.get(key)
+        if links_menu is None:
+            links_menu = ProductCategory.objects.filter(is_active=True)
+            cache.set(key, links_menu)
+        return links_menu
+    else:
+        return ProductCategory.objects.filter(is_active=True)
+
+
 def get_hot_product():
     products = Product.objects.all()
     return random.sample(list(products), 1)[0]
@@ -31,13 +44,13 @@ def main(request):
     title = 'Главная'
     # products = Product.objects.all()[:4]
     products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:3]
-    content = {'title': title, 'products': products,}
+    content = {'title': title, 'products': products, }
     return render(request, 'mainapp/index.html', content)
 
 
 def products(request, pk=None, page=1):
     title = 'продукты'
-    links_menu = ProductCategory.objects.all()
+    links_menu = get_links_menu()
 
     if pk is not None:
         if pk == 0:
@@ -100,7 +113,7 @@ def contact(request):
         # locations = json.loads(file_content)
         # но лучше так:
         locations = json.load(file_contacts)
-    content = {'title': title, 'visit_date': visit_date, 'locations': locations,}
+    content = {'title': title, 'visit_date': visit_date, 'locations': locations, }
     return render(request, 'mainapp/contact.html', content)
 
 # обработка ошибки 404
