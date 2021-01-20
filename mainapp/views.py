@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 import datetime
 import os
 from django.conf import settings
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 
 from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
@@ -63,6 +63,9 @@ def main(request):
 
 # можно закэшировать страницу здесь, а можно в urls
 # @cache_page(3600)
+# сейчас же, наоборот эта страница не будет закеширована, т. к. прописали кеширование всего сайта, а чтобы
+# менялся обновляемый контент, ставим never_cache
+@never_cache
 def products(request, pk=None, page=1):
     title = 'продукты'
     links_menu = get_links_menu()
@@ -106,6 +109,7 @@ def products(request, pk=None, page=1):
     return render(request, 'mainapp/products.html', content)
 
 
+@never_cache
 def product(request, pk):
     title = 'продукты'
     content = {
