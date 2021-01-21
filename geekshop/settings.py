@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&2@-=_owdjj^w-^5_8npaa!^-c^^f@r1lxqecksosq9f(qy_0='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 # для обработки 404 ошибок нужно постваить флаг False и в скобки добавить '*' или localhost
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,7 +55,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 if DEBUG:
@@ -147,13 +145,14 @@ CACHE_MIDDLEWARE_SECONDS = 120
 CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
+   'default': {
+       'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+       'LOCATION': '127.0.0.1:11211',
+   }
 }
 
 LOW_CACHE = True
+
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 

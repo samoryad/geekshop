@@ -65,7 +65,6 @@ def main(request):
 # @cache_page(3600)
 # сейчас же, наоборот эта страница не будет закеширована, т. к. прописали кеширование всего сайта, а чтобы
 # менялся обновляемый контент, ставим never_cache
-@never_cache
 def products(request, pk=None, page=1):
     title = 'продукты'
     links_menu = get_links_menu()
@@ -109,7 +108,6 @@ def products(request, pk=None, page=1):
     return render(request, 'mainapp/products.html', content)
 
 
-@never_cache
 def product(request, pk):
     title = 'продукты'
     content = {
