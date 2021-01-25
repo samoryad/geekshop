@@ -53,7 +53,8 @@ class Command(BaseCommand):
         ).order_by('action_order', 'total_price').select_related()
 
         for orderitem in order_discounts:
-            print(f'{orderitem.action_order:2}: order #{orderitem.pk:3}: {orderitem.product.name:15}: discount {orderitem.total_price} | {orderitem.order.updated - orderitem.order.created}')
+            print(f'{orderitem.action_order:2}: order #{orderitem.pk:3}: {orderitem.product.name:15}: \
+            discount {abs(orderitem.total_price):6.2f} | {orderitem.order.updated - orderitem.order.created}')
 
         # test_products = Product.objects.filter(
         #     Q(category__name='офис') |
