@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.db import connection
+from django.db.models import F
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.template.loader import render_to_string
@@ -48,8 +50,13 @@ def basket_add(request, pk):
     old_basket_item = Basket.get_product(user=request.user, product=product)
 
     if old_basket_item:
-        old_basket_item[0].quantity += 1
+        # old_basket_item[0].quantity += 1
+        old_basket_item[0].quantity = F('quantity') + 1
         old_basket_item[0].save()
+
+        # для просмотра разницы в верхнем коде
+        # update_queries = list(filter(lambda x: 'UPDATE' in x['sql'], connection.queries))
+        # print(f'query basket_add: {update_queries}')
     else:
         new_basket_item = Basket(user=request.user, product=product)
         new_basket_item.quantity += 1
