@@ -468,7 +468,7 @@ class ProductUpdateView(UpdateView):
     def get_success_url(self):
         product_pk = self.kwargs['pk']
         product_item = Product.objects.get(pk=product_pk)
-        success_url = reverse('admin:products', args=[product_item.category__pk])
+        success_url = reverse('admin:products', args=[product_item.category.pk])
         return success_url
 
     def get_form_kwargs(self):
