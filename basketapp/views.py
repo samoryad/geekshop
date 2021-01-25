@@ -20,21 +20,40 @@ def basket(request):
 
     return render(request, 'basketapp/basket.html', content)
 
+# моя старая версия перед ДЗ №8 (F-объекты)
+# @login_required
+# def basket_add(request, pk):
+#     if 'login' in request.META.get('HTTP_REFERER'):
+#         return HttpResponseRedirect(reverse('products:product', args=[pk]))
+#     product = get_object_or_404(Product, pk=pk)
+#     basket_item = Basket.objects.filter(user=request.user, product=product).first()
+#
+#     if not basket_item:
+#         basket_item = Basket(user=request.user, product=product)
+#
+#     basket_item.quantity += 1
+#     # добавить 'quantity' в скобки при ошибке update_fields
+#     # (если будет приходить пустое поле в сигнале product_quantity_update_save)
+#     basket_item.save()
+#
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 @login_required
 def basket_add(request, pk):
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(reverse('products:product', args=[pk]))
+
     product = get_object_or_404(Product, pk=pk)
-    basket_item = Basket.objects.filter(user=request.user, product=product).first()
+    old_basket_item = Basket.get_product(user=request.user, product=product)
 
-    if not basket_item:
-        basket_item = Basket(user=request.user, product=product)
-
-    basket_item.quantity += 1
-    # добавить 'quantity' в скобки при ошибке update_fields
-    # (если будет приходить пустое поле в сигнале product_quantity_update_save)
-    basket_item.save()
+    if old_basket_item:
+        old_basket_item[0].quantity += 1
+        old_basket_item[0].save()
+    else:
+        new_basket_item = Basket(user=request.user, product=product)
+        new_basket_item.quantity += 1
+        new_basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
