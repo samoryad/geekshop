@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.db import connection
+from django.db.models import F
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
@@ -260,7 +261,15 @@ class ProductCategoryUpdateView(UpdateView):
         context['title'] = 'категории/редактирование'
         return context
 
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                print(f'применяется скидка {discount}% к товарам категории {self.object.name}')
+                self.object.product_set.update(price=F('price') * (1 - discount / 100))
+                db_profile_by_type(self.__class__, 'UPDATE', connection.queries)
 
+        return super().form_valid(form)
 # @user_passes_test(lambda u: u.is_superuser)
 # def category_delete(request, pk):
 #     title = 'категории/удаление'
