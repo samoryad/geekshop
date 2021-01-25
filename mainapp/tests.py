@@ -23,11 +23,11 @@ class TestMainappSmoke(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-        # response = self.client.get('/contact/')
-        # self.assertEqual(response.status_code, 200)
-        #
-        # response = self.client.get('/products/')
-        # self.assertEqual(response.status_code, 200)
+        response = self.client.get('/contact/')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/products/')
+        self.assertEqual(response.status_code, 200)
 
         # response = self.client.get('/products/category/0/')
         # self.assertEqual(response.status_code, 200)
