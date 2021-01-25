@@ -3,6 +3,7 @@ import random
 
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 import datetime
 import os
@@ -124,7 +125,8 @@ def products(request, pk=None, page=1):
         else:
             # category = ProductCategory.objects.get(pk=pk)
             category = get_category(pk)
-            products_list = get_products_in_category_ordered_by_price(pk)
+            # products_list = get_products_in_category_ordered_by_price(pk)
+            products_list = Product.objects.filter(Q(category__name='офис') | Q(category__name=1))
 
         paginator = Paginator(products_list, 2)
         try:
