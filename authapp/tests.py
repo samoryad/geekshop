@@ -83,7 +83,6 @@ class TestUserManagement(TestCase):
         new_user_data = {
             'username': 'samuel',
             'first_name': 'Сэмюэл',
-            'last_name': 'Джексон',
             'password1': 'geekbrains',
             'password2': 'geekbrains',
             'email': 'sumuel@geekshop.local',
@@ -115,7 +114,6 @@ class TestUserManagement(TestCase):
         new_user_data = {
             'username': 'teen',
             'first_name': 'Мэри',
-            'last_name': 'Поппинс',
             'password1': 'geekbrains',
             'password2': 'geekbrains',
             'email': 'merypoppins@geekshop.local',
