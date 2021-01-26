@@ -76,41 +76,41 @@ class UserListView(ListView):
         return context
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def user_update(request, pk):
-#     title = 'пользователи/редактирование'
+@user_passes_test(lambda u: u.is_superuser)
+def user_update(request, pk):
+    title = 'пользователи/редактирование'
+
+    edit_user = get_object_or_404(ShopUser, pk=pk)
+    if request.method == 'POST':
+        edit_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=edit_user)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('admin:user_update', args=[edit_user.pk]))
+    else:
+        edit_form = ShopUserAdminEditForm(instance=edit_user)
+
+    content = {
+        'title': title,
+        'update_form': edit_form
+    }
+
+    return render(request, 'adminapp/user_update.html', content)
+
+
+# class UserUpdateView(UpdateView):
+#     model = ShopUser
+#     template_name = 'adminapp/user_update.html'
+#     success_url = reverse_lazy('admin:user_update')
+#     form_class = ShopUserAdminEditForm
 #
-#     edit_user = get_object_or_404(ShopUser, pk=pk)
-#     if request.method == 'POST':
-#         edit_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=edit_user)
-#         if edit_form.is_valid():
-#             edit_form.save()
-#             return HttpResponseRedirect(reverse('admin:user_update', args=[edit_user.pk]))
-#     else:
-#         edit_form = ShopUserAdminEditForm(instance=edit_user)
+#     @method_decorator(user_passes_test(lambda u: u.is_superuser))
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)
 #
-#     content = {
-#         'title': title,
-#         'update_form': edit_form
-#     }
-#
-#     return render(request, 'adminapp/user_update.html', content)
-
-
-class UserUpdateView(UpdateView):
-    model = ShopUser
-    template_name = 'adminapp/user_update.html'
-    success_url = reverse_lazy('admin:user_update')
-    form_class = ShopUserAdminEditForm
-
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'пользователи/редактирование'
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'пользователи/редактирование'
+#         return context
 
 
 # @user_passes_test(lambda u: u.is_superuser)
