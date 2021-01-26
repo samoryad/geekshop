@@ -35,10 +35,10 @@ class TestUserManagement(TestCase):
         self.assertEqual(response.context['user'], self.superuser)
 
         # главная после логина
-        # response = self.client.get('/')
-        # self.assertContains(response, 'Пользователь', status_code=200)
-        # self.assertEqual(response.context['user'], self.user)
-        # self.assertIn('Пользователь', response.content.decode())
+        response = self.client.get('/')
+        self.assertContains(response, 'Пользователь', status_code=200)
+        self.assertEqual(response.context['user'], self.user)
+        self.assertIn('Пользователь', response.content.decode())
 
     def test_user_logout(self):
         self.client.login(username='django', password='geekbrains')
@@ -49,6 +49,21 @@ class TestUserManagement(TestCase):
 
         response = self.client.get('/auth/logout/')
         self.assertEqual(response.status_code, 302)
+
+    def test_basket_login_redirect(self):
+        # без логина должен переадресовать
+        response = self.client.get('/basket/')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/auth/login/?next=/basket/')
+
+        # с логином все должно быть хорошо
+        self.client.login(username='django', password='geekbrains')
+
+        response = self.client.get('/basket/')
+        self.assertEqual(response.status_code, 200)
+        # self.assertEqual(list(response.context['basket']), [])
+        self.assertEqual(response.request['PATH_INFO'], '/basket/')
+        # self.assertIn('Ваша корзина, Пользователь', response.content.decode())
 
     def tearDown(self):
         call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp', 'basketapp')

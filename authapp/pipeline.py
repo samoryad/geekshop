@@ -62,4 +62,3 @@ def save_user_profile(backend, user, response, *args, **kwargs):
         user.avatar = os.path.join('users_avatars', f'{user.pk}.jpg')
 
     user.save()
-
