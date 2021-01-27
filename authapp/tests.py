@@ -28,7 +28,7 @@ class TestUserManagement(TestCase):
         # self.assertNotIn('Пользователь', response.content.decode())
 
         # данные пользователя
-        self.client.login(username='django', password='geekbrains')
+        self.client.login(username='test1', password='geekbrains')
 
         # логинимся
         response = self.client.get('/auth/login/')
