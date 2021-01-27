@@ -23,9 +23,9 @@ class TestUserManagement(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['user'].is_anonymous)
-        # self.assertEqual(response.context['title'], 'главная')
+        self.assertEqual(response.context['title'], 'главная')
         self.assertNotContains(response, 'Пользователь', status_code=200)
-        # self.assertNotIn('Пользователь', response.content.decode())
+        self.assertNotIn('Пользователь', response.content.decode())
 
         # данные пользователя
         self.client.login(username='test1', password='geekbrains')
@@ -69,9 +69,9 @@ class TestUserManagement(TestCase):
 
         response = self.client.get('/basket/')
         self.assertEqual(response.status_code, 200)
-        # self.assertEqual(list(response.context['basket']), [])
+        self.assertEqual(list(response.context['basket']), [])
         self.assertEqual(response.request['PATH_INFO'], '/basket/')
-        # self.assertIn('Ваша корзина, Пользователь', response.content.decode())
+        self.assertIn('Ваша корзина, Пользователь', response.content.decode())
 
     def test_user_register(self):
         # логин без данных пользователя
@@ -109,7 +109,7 @@ class TestUserManagement(TestCase):
 
         # проверяем главную страницу
         response = self.client.get('/')
-        self.assertContains(response, text=new_user_data['username'], status_code=200)
+        self.assertContains(response, text=new_user_data['first_name'], status_code=200)
 
     def test_user_wrong_register(self):
         new_user_data = {
