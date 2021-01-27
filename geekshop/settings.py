@@ -188,9 +188,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/auth/login/'
 LOGIN_ERROR_URL = '/'
 # для локального сервера
-# DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://localhost:8000'
 # для удалённого
-DOMAIN_NAME = 'http://194.67.110.105'
+# DOMAIN_NAME = 'http://194.67.110.105'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
 EMAIL_HOST_USER = 'django@geekbrains.local'
