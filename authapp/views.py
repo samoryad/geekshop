@@ -25,7 +25,7 @@ def send_verify_mail(user):
 def verify(request, email, activation_key):
     try:
         user = ShopUser.objects.get(email=email)
-        if user.activation_key == activation_key and not user.is_activation_key_expired():
+        if user.activation_key == activation_key:
             user.activation_key = ''
             user.is_active = True
             user.save()
