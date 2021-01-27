@@ -82,7 +82,7 @@ class TestUserManagement(TestCase):
 
         new_user_data = {
             'username': 'samuel',
-            'first_name': 'Сэмюэл',
+            'first_name': 'samuel01',
             'password1': 'geekbrains',
             'password2': 'geekbrains',
             'email': 'sumuel@geekshop.local',
@@ -91,13 +91,13 @@ class TestUserManagement(TestCase):
         response = self.client.post('/auth/register/', data=new_user_data)
         self.assertEqual(response.status_code, 302)
 
-        # new_user = ShopUser.objects.get(username=new_user_data['username'])
+        new_user = ShopUser.objects.get(username=new_user_data['username'])
 
-        # activation_url = f"{settings.DOMAIN_NAME}/auth/verify/{new_user_data['email']}/{new_user.activation_key}/"
-        # print(activation_url)
-        #
-        # response = self.client.get(activation_url)
-        # self.assertEqual(response.status_code, 200)
+        activation_url = f"{settings.DOMAIN_NAME}/auth/verify/{new_user_data['email']}/{new_user.activation_key}/"
+        print(activation_url)
+
+        response = self.client.get(activation_url)
+        self.assertEqual(response.status_code, 200)
 
         # данные нового пользователя
         # self.client.login(username=new_user_data['username'], password=new_user_data['password1'])
