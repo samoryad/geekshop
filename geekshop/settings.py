@@ -22,7 +22,7 @@ SECRET_KEY = '&2@-=_owdjj^w-^5_8npaa!^-c^^f@r1lxqecksosq9f(qy_0='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['194.67.110.105']
+ALLOWED_HOSTS = ['*']
 # для обработки 404 ошибок нужно постваить флаг False и в скобки добавить '*' или localhost
 
 # Application definition
@@ -188,9 +188,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/auth/login/'
 LOGIN_ERROR_URL = '/'
 # для локального сервера
-DOMAIN_NAME = 'http://localhost:8000'
+# DOMAIN_NAME = 'http://localhost:8000'
 # для удалённого
-# DOMAIN_NAME = 'http://194.67.110.105'
+DOMAIN_NAME = 'http://194.67.110.105'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
 EMAIL_HOST_USER = 'django@geekbrains.local'
