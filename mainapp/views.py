@@ -49,11 +49,11 @@ def get_products():
         key = 'products'
         products = cache.get(key)
         if products is None:
-            products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+            products = Product.objects.filter(is_active=True, category__is_active=True).select_related()
             cache.set(key, products)
         return products
     else:
-        return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+        return Product.objects.filter(is_active=True, category__is_active=True).select_related()
 
 
 def get_product(pk):
