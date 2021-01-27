@@ -49,11 +49,11 @@ def get_products():
         key = 'products'
         products = cache.get(key)
         if products is None:
-            products = Product.objects.filter(is_active=True, category__is_active=True).select_related()
+            products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
             cache.set(key, products)
         return products
     else:
-        return Product.objects.filter(is_active=True, category__is_active=True).select_related()
+        return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
 
 
 def get_product(pk):
@@ -93,7 +93,8 @@ def get_products_in_category_ordered_by_price(pk):
 
 
 def get_hot_product():
-    products = get_products()
+    # products = get_products()
+    products = Product.objects.filter(is_active=True, category__is_active=True)
     return random.sample(list(products), 1)[0]
 
 
