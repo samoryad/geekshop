@@ -23,7 +23,7 @@ class TestUserManagement(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['user'].is_anonymous)
-        self.assertEqual(response.context['title'], 'главная')
+        self.assertEqual(response.context['title'], 'Главная')
         self.assertNotContains(response, 'Пользователь', status_code=200)
         self.assertNotIn('Пользователь', response.content.decode())
 
@@ -71,7 +71,7 @@ class TestUserManagement(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(list(response.context['basket']), [])
         self.assertEqual(response.request['PATH_INFO'], '/basket/')
-        self.assertIn('Ваша корзина, Пользователь', response.content.decode())
+        self.assertIn('Ваша корзина,\n        \n            Пользователь', response.content.decode())
 
     def test_user_register(self):
         # логин без данных пользователя
