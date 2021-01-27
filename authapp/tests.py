@@ -91,7 +91,7 @@ class TestUserManagement(TestCase):
         response = self.client.post('/auth/register/', data=new_user_data)
         self.assertEqual(response.status_code, 302)
 
-        new_user = ShopUser.objects.get(username=new_user_data['username'])
+        # new_user = ShopUser.objects.get(username=new_user_data['username'])
 
         # activation_url = f"{settings.DOMAIN_NAME}/auth/verify/{new_user_data['email']}/{new_user.activation_key}/"
         # print(activation_url)
@@ -100,16 +100,16 @@ class TestUserManagement(TestCase):
         # self.assertEqual(response.status_code, 200)
 
         # данные нового пользователя
-        self.client.login(username=new_user_data['username'], password=new_user_data['password1'])
-
-        # логинимся
-        response = self.client.get('/auth/login/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.context['user'].is_anonymous)
-
-        # проверяем главную страницу
-        response = self.client.get('/')
-        self.assertContains(response, text=new_user_data['first_name'], status_code=200)
+        # self.client.login(username=new_user_data['username'], password=new_user_data['password1'])
+        #
+        # # логинимся
+        # response = self.client.get('/auth/login/')
+        # self.assertEqual(response.status_code, 200)
+        # self.assertTrue(response.context['user'].is_anonymous)
+        #
+        # # проверяем главную страницу
+        # response = self.client.get('/')
+        # self.assertContains(response, text=new_user_data['first_name'], status_code=200)
 
     def test_user_wrong_register(self):
         new_user_data = {
