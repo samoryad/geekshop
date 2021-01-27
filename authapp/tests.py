@@ -109,7 +109,7 @@ class TestUserManagement(TestCase):
 
         # проверяем главную страницу
         response = self.client.get('/')
-        self.assertContains(response, text=new_user_data['first_name'], status_code=200)
+        self.assertContains(response, text=new_user_data['username'], status_code=200)
 
     def test_user_wrong_register(self):
         new_user_data = {
