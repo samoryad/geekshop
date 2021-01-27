@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&2@-=_owdjj^w-^5_8npaa!^-c^^f@r1lxqecksosq9f(qy_0='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['194.67.110.105']
 # для обработки 404 ошибок нужно постваить флаг False и в скобки добавить '*' или localhost
